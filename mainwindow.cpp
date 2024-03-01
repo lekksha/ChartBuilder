@@ -1,15 +1,23 @@
+#include <QSplitter>
+
 #include "mainwindow.h"
-#include "ui_mainwindow.h"
 
-MainWindow::MainWindow(QWidget *parent)
-    : QMainWindow(parent)
-    , ui(new Ui::MainWindow)
+
+MainWindow::MainWindow() :
+    QMainWindow(nullptr)
 {
-    ui->setupUi(this);
-}
+    files_view = new FilesView(this);
+    charts_view = new ChartsView(this);
 
-MainWindow::~MainWindow()
-{
-    delete ui;
-}
+    auto splitter = new QSplitter(this);
+    splitter->addWidget(files_view);
+    splitter->addWidget(charts_view);
 
+    splitter->setStretchFactor(0, 1);
+    splitter->setStretchFactor(1, 3);
+    splitter->setHandleWidth(1);
+
+    setCentralWidget(splitter);
+
+    setMinimumHeight(450);
+}

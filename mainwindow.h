@@ -1,21 +1,23 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
+#pragma once
+
 #include <QMainWindow>
+#include <QHBoxLayout>
+#include <QVBoxLayout>
 
-QT_BEGIN_NAMESPACE
-namespace Ui { class MainWindow; }
-QT_END_NAMESPACE
+#include "chartsview.h"
+#include "filesview.h"
 
-class MainWindow : public QMainWindow
-{
+class MainWindow : public QMainWindow {
     Q_OBJECT
-
 public:
-    MainWindow(QWidget *parent = nullptr);
-    ~MainWindow();
+    MainWindow();
 
 private:
-    Ui::MainWindow *ui;
+    // views
+    FilesView *files_view{nullptr};
+    ChartsView *charts_view{nullptr};
 };
 #endif // MAINWINDOW_H
