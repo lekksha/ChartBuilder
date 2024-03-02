@@ -1,6 +1,7 @@
 QT       += core gui
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
+QT += charts
 
 CONFIG += c++17
 
@@ -10,12 +11,14 @@ CONFIG += c++17
 
 SOURCES += \
     chartsview.cpp \
+    chatdata.cpp \
     filesview.cpp \
     main.cpp \
     mainwindow.cpp
 
 HEADERS += \
     chartsview.h \
+    chatdata.h \
     filesview.h \
     mainwindow.h
 
