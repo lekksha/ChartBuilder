@@ -10,17 +10,27 @@ CONFIG += c++17
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    chartdata.cpp \
+    chartdata.cpp \
     chartsview.cpp \
-    chatdata.cpp \
     filesview.cpp \
+    ioc.cpp \
+    ioc.cpp \
     main.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    reader.cpp \
+    reader.cpp
 
 HEADERS += \
+    chartdata.h \
+    chartdata.h \
     chartsview.h \
-    chatdata.h \
     filesview.h \
-    mainwindow.h
+    ioc.h \
+    ioc.h \
+    mainwindow.h \
+    reader.h \
+    reader.h
 
 FORMS += \
     mainwindow.ui

@@ -1,6 +1,8 @@
 #include <QVBoxLayout>
 #include <QFileDialog>
 
+#include "ioc.h"
+#include "reader.h"
 #include "filesview.h"
 
 FilesView::FilesView(QWidget* parent) :
@@ -33,11 +35,24 @@ FilesView::FilesView(QWidget* parent) :
     vbox_layout->addWidget(list_view);
 
     setMinimumWidth(400);
-
+    QObject::connect(list_view, &QListView::clicked, this, &FilesView::onFileClicked);
     QObject::connect(list_view, &QListView::activated, this, &FilesView::onFileSelected);
     QObject::connect(back_button, &QPushButton::clicked, this, &FilesView::onBackClicked);
     QObject::connect(change_directory_button, &QPushButton::clicked, this, &FilesView::onChangedDirectoryButton);
     QObject::connect(current_directory_line_edit, &QLineEdit::returnPressed, this, &FilesView::onChangedDirectoryLineEdit);
+}
+
+void FilesView::onFileClicked(const QModelIndex& index)
+{
+    auto extention = filesystem_model->fileInfo(index).fileName().split(".").last();
+
+    if (extention == "csv")
+    {
+        IoCContainer::registerService<IReader>(std::make_shared<CSVReader>());
+        return;
+    }
+
+    IoCContainer::registerService<IReader>(nullptr);
 }
 
 void FilesView::onBackClicked()

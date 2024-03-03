@@ -1,11 +1,8 @@
 #ifndef CHARTSVIEW_H
 #define CHARTSVIEW_H
 
-#pragma once
-
 #include <QWidget>
 #include <QPushButton>
-#include <QtCharts/QtCharts>
 
 #include "chartdata.h"
 
@@ -15,11 +12,16 @@ class ChartsView : public QWidget
 public:
     ChartsView(QWidget* parent);
 
+public slots:
+    void onFileReadSucceed(const ChartData& data);
+    void onFileReadFailed(const QString& error);
+
 private slots:
     void onSaveClicked();
 
 private:
     QChartView *chart_view;
+    QLabel *state_label;
     QPushButton *save_button;
 
     ChartData chart_data;

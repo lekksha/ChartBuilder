@@ -19,6 +19,7 @@ signals:
     void fileSelected(const QFileInfo& info);
 
 private slots:
+    void onFileClicked(const QModelIndex& index);
     void onFileSelected(const QModelIndex& index);
     void onBackClicked();
     void onChangedDirectoryButton();
